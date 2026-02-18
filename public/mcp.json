@@ -1,0 +1,83 @@
+{
+  "schema_version": "1.0",
+  "name": "shouldirefinancemy-mcp",
+  "version": "1.0.0",
+  "description": "MCP server for refinance decision calculations - get clear YES/NO recommendations",
+  "homepage": "https://shouldirefinancemy.com",
+  "author": "ShouldIRefinanceMy.com",
+  "license": "MIT",
+  "transport": {
+    "type": "http",
+    "url": "https://shouldirefinancemy.com/api/mcp"
+  },
+  "capabilities": {
+    "tools": true
+  },
+  "tools": [
+    {
+      "name": "shouldIRefinanceCar",
+      "description": "Calculate whether to refinance an auto/car loan. Returns a clear YES/NO/MAYBE decision with confidence level, reasons, and savings.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "loanBalance": { "type": "number", "description": "Current loan balance in dollars" },
+          "currentRate": { "type": "number", "description": "Current interest rate as percentage (e.g., 8.5)" },
+          "monthsRemaining": { "type": "number", "description": "Months remaining on current loan" },
+          "newRate": { "type": "number", "description": "New interest rate as percentage" },
+          "newTermMonths": { "type": "number", "description": "New loan term in months" },
+          "refinanceFees": { "type": "number", "description": "Refinance fees in dollars" }
+        },
+        "required": ["loanBalance", "currentRate", "monthsRemaining", "newRate", "newTermMonths", "refinanceFees"]
+      }
+    },
+    {
+      "name": "shouldIRefinanceMortgage",
+      "description": "Calculate whether to refinance a mortgage/home loan. Considers PMI, closing costs, and break-even period.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "loanBalance": { "type": "number", "description": "Current loan balance in dollars" },
+          "homeValue": { "type": "number", "description": "Current home value in dollars (for LTV/PMI calculation)" },
+          "currentRate": { "type": "number", "description": "Current interest rate as percentage" },
+          "monthsRemaining": { "type": "number", "description": "Months remaining on current loan" },
+          "newRate": { "type": "number", "description": "New interest rate as percentage" },
+          "newTermMonths": { "type": "number", "description": "New loan term in months" },
+          "closingCosts": { "type": "number", "description": "Estimated closing costs in dollars (typically 2-5% of loan)" }
+        },
+        "required": ["loanBalance", "homeValue", "currentRate", "monthsRemaining", "newRate", "newTermMonths", "closingCosts"]
+      }
+    },
+    {
+      "name": "shouldIRefinancePersonalLoan",
+      "description": "Calculate whether to refinance a personal loan.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "loanBalance": { "type": "number", "description": "Current loan balance in dollars" },
+          "currentRate": { "type": "number", "description": "Current interest rate as percentage" },
+          "monthsRemaining": { "type": "number", "description": "Months remaining on current loan" },
+          "newRate": { "type": "number", "description": "New interest rate as percentage" },
+          "newTermMonths": { "type": "number", "description": "New loan term in months" },
+          "refinanceFees": { "type": "number", "description": "Refinance/origination fees in dollars" }
+        },
+        "required": ["loanBalance", "currentRate", "monthsRemaining", "newRate", "newTermMonths", "refinanceFees"]
+      }
+    },
+    {
+      "name": "shouldIBalanceTransfer",
+      "description": "Calculate whether to do a credit card balance transfer. Considers promo APR period, transfer fees, and payoff timeline.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "balance": { "type": "number", "description": "Current credit card balance in dollars" },
+          "currentAPR": { "type": "number", "description": "Current APR as percentage" },
+          "transferAPR": { "type": "number", "description": "Promotional transfer APR as percentage (often 0)" },
+          "transferFeePercent": { "type": "number", "description": "Balance transfer fee as percentage (e.g., 3)" },
+          "promoMonths": { "type": "number", "description": "Promotional period in months" },
+          "monthlyPayment": { "type": "number", "description": "Monthly payment amount in dollars" }
+        },
+        "required": ["balance", "currentAPR", "transferAPR", "transferFeePercent", "promoMonths", "monthlyPayment"]
+      }
+    }
+  ]
+}

@@ -2,6 +2,7 @@
 
 import { useState, useMemo } from "react";
 import Link from "next/link";
+import Script from "next/script";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -122,6 +123,60 @@ function calculateRefinance(
   };
 }
 
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "When should I refinance my car loan?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Consider refinancing your car loan if your credit score has improved since you got the loan, interest rates have dropped, or you're paying more than 1% above current market rates. A rate reduction of 0.5% or more typically makes refinancing worthwhile."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How much can I save by refinancing my car?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Savings depend on your loan balance, rate reduction, and term. For example, refinancing a $15,000 loan from 8.5% to 5.5% over 36 months could save $700-1000 in interest."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Are there fees to refinance a car loan?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Some lenders charge fees of $0-$500 for auto refinancing. Many online lenders offer no-fee refinancing. Always factor any fees into your savings calculation."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Will refinancing my car hurt my credit score?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Refinancing triggers a hard inquiry which may temporarily lower your score by a few points. However, rate shopping within a 14-day window typically counts as a single inquiry."
+      }
+    }
+  ]
+};
+
+const webAppSchema = {
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Car Loan Refinance Calculator",
+  "url": "https://shouldirefinancemy.com/car",
+  "description": "Calculate whether you should refinance your car loan with a clear YES or NO recommendation",
+  "applicationCategory": "FinanceApplication",
+  "operatingSystem": "Any",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+  }
+};
+
 export default function CarRefinancePage() {
   const [loanBalance, setLoanBalance] = useState<string>("15000");
   const [currentRate, setCurrentRate] = useState<string>("8.5");
@@ -150,7 +205,18 @@ export default function CarRefinancePage() {
   };
 
   return (
-    <main className="min-h-screen bg-gradient-to-b from-background to-muted/30">
+    <>
+      <Script
+        id="faq-schema"
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+      />
+      <Script
+        id="webapp-schema"
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(webAppSchema) }}
+      />
+      <main className="min-h-screen bg-gradient-to-b from-background to-muted/30">
       <div className="container mx-auto px-4 py-8 max-w-4xl">
         <Link 
           href="/" 
@@ -378,7 +444,44 @@ export default function CarRefinancePage() {
             )}
           </div>
         </div>
+
+        {/* FAQ Section */}
+        <section className="mt-16">
+          <h2 className="text-2xl font-bold mb-6">Frequently Asked Questions</h2>
+          <div className="space-y-6">
+            <div>
+              <h3 className="font-semibold mb-2">When should I refinance my car loan?</h3>
+              <p className="text-muted-foreground">
+                Consider refinancing your car loan if your credit score has improved since you got the loan, 
+                interest rates have dropped, or you&apos;re paying more than 1% above current market rates. 
+                A rate reduction of 0.5% or more typically makes refinancing worthwhile.
+              </p>
+            </div>
+            <div>
+              <h3 className="font-semibold mb-2">How much can I save by refinancing my car?</h3>
+              <p className="text-muted-foreground">
+                Savings depend on your loan balance, rate reduction, and term. For example, refinancing a 
+                $15,000 loan from 8.5% to 5.5% over 36 months could save $700-1000 in interest.
+              </p>
+            </div>
+            <div>
+              <h3 className="font-semibold mb-2">Are there fees to refinance a car loan?</h3>
+              <p className="text-muted-foreground">
+                Some lenders charge fees of $0-$500 for auto refinancing. Many online lenders offer no-fee 
+                refinancing. Always factor any fees into your savings calculation.
+              </p>
+            </div>
+            <div>
+              <h3 className="font-semibold mb-2">Will refinancing my car hurt my credit score?</h3>
+              <p className="text-muted-foreground">
+                Refinancing triggers a hard inquiry which may temporarily lower your score by a few points. 
+                However, rate shopping within a 14-day window typically counts as a single inquiry.
+              </p>
+            </div>
+          </div>
+        </section>
       </div>
     </main>
+    </>
   );
 }
