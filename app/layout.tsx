@@ -18,6 +18,8 @@ export const metadata: Metadata = {
     "is refinancing worth it",
     "refinance savings calculator",
     "break even refinance",
+    "should I transfer balance on credit card",
+    "balance transfer calculator",
   ],
   authors: [{ name: "ShouldIRefinanceMy.com" }],
   robots: {
