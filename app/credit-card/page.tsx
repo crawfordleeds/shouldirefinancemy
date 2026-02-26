@@ -175,6 +175,14 @@ const faqSchema = {
   "mainEntity": [
     {
       "@type": "Question",
+      "name": "Should I transfer balance on my credit card?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "You should transfer your credit card balance if: (1) you can get a 0% APR promotional offer, (2) you can pay off most or all of the balance during the promo period, and (3) the transfer fee is less than the interest you'd otherwise pay. Use our calculator above to see if it's worth it for your specific situation."
+      }
+    },
+    {
+      "@type": "Question",
       "name": "Is a balance transfer worth it?",
       "acceptedAnswer": {
         "@type": "Answer",
@@ -204,6 +212,14 @@ const faqSchema = {
         "@type": "Answer",
         "text": "After the promotional period, any remaining balance will accrue interest at the card's regular APR, which is typically 15-25%. This is why it's important to pay off as much as possible during the promo period."
       }
+    },
+    {
+      "@type": "Question",
+      "name": "How do I calculate if a balance transfer saves money?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "To calculate balance transfer savings: (1) Calculate the total interest you'd pay on your current card, (2) Add up the transfer fee plus any interest during and after the promo period, (3) Subtract to find your savings. Our free calculator above does this automatically."
+      }
     }
   ]
 };
@@ -211,9 +227,9 @@ const faqSchema = {
 const webAppSchema = {
   "@context": "https://schema.org",
   "@type": "WebApplication",
-  "name": "Balance Transfer Calculator",
-  "url": "https://shouldirefinancemy.com/credit-card",
-  "description": "Calculate whether a credit card balance transfer is worth it with a clear YES or NO recommendation",
+  "name": "Credit Card Balance Transfer Calculator",
+  "url": "https://www.shouldirefinancemy.com/credit-card",
+  "description": "Free calculator to determine if you should transfer balance on your credit card. Get a clear YES or NO recommendation based on your 0% APR offer, transfer fees, and payoff timeline.",
   "applicationCategory": "FinanceApplication",
   "operatingSystem": "Any",
   "offers": {
@@ -274,10 +290,10 @@ export default function CreditCardBalanceTransferPage() {
 
           <div className="text-center mb-8">
             <h1 className="text-3xl font-extrabold tracking-tight sm:text-4xl mb-2">
-              Should I Do a Balance Transfer?
+              Should I Transfer Balance on Credit Card?
             </h1>
             <p className="text-lg text-muted-foreground">
-              See if transferring your credit card balance will save you money
+              Free calculator to see if a credit card balance transfer will save you money
             </p>
           </div>
 
@@ -501,6 +517,15 @@ export default function CreditCardBalanceTransferPage() {
             <h2 className="text-2xl font-bold mb-6">Frequently Asked Questions</h2>
             <div className="space-y-6">
               <div>
+                <h3 className="font-semibold mb-2">Should I transfer balance on my credit card?</h3>
+                <p className="text-muted-foreground">
+                  You should transfer your credit card balance if: (1) you can get a 0% APR promotional 
+                  offer, (2) you can pay off most or all of the balance during the promo period, and 
+                  (3) the transfer fee is less than the interest you&apos;d otherwise pay. Use our calculator 
+                  above to see if it&apos;s worth it for your specific situation.
+                </p>
+              </div>
+              <div>
                 <h3 className="font-semibold mb-2">Is a balance transfer worth it?</h3>
                 <p className="text-muted-foreground">
                   A balance transfer is worth it if you can pay off most or all of the balance during 
@@ -528,6 +553,14 @@ export default function CreditCardBalanceTransferPage() {
                   After the promotional period, any remaining balance will accrue interest at the card&apos;s 
                   regular APR, which is typically 15-25%. This is why it&apos;s important to pay off as much 
                   as possible during the promo period.
+                </p>
+              </div>
+              <div>
+                <h3 className="font-semibold mb-2">How do I calculate if a balance transfer saves money?</h3>
+                <p className="text-muted-foreground">
+                  To calculate balance transfer savings: (1) Calculate the total interest you&apos;d pay on 
+                  your current card, (2) Add up the transfer fee plus any interest during and after the 
+                  promo period, (3) Subtract to find your savings. Our free calculator above does this automatically.
                 </p>
               </div>
             </div>

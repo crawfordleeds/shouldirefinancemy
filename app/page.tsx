@@ -20,7 +20,8 @@ const webAppSchema = {
     "Car loan refinance calculator",
     "Mortgage refinance calculator",
     "Personal loan refinance calculator",
-    "Credit card balance transfer calculator"
+    "Credit card balance transfer calculator",
+    "Should I transfer balance on credit card calculator"
   ]
 };
 
@@ -80,7 +81,7 @@ export default function HomePage() {
     },
     {
       title: "Credit Card",
-      description: "Should I do a balance transfer?",
+      description: "Should I transfer my balance?",
       href: "/credit-card",
       icon: CreditCard,
       available: true,
